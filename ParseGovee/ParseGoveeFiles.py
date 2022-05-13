@@ -3,43 +3,41 @@ import csv
   
 x = []
 y = []
-  
+y2 = []
+
 with open('IDFENV.csv','r') as csvfile:
     plots = csv.reader(csvfile, delimiter = ',')
       
     for row in plots:
         x.append(row[0])
-        y.append(row[2])
-  
-print(x)
-print(y)
+        y.append(row[1])
+        y2.append(row[2])
 
-#plt.bar(x, y, color = 'g')
-##plt.xlabel('Time')
-#plt.ylabel('Temperature')
-#plt.title('Temperature over Time IDF environment')
-#plt.legend()
-#plt.show()
+#Removes the first two column values that are not important
+x.pop(0)
+y.pop(0)
+y2.pop(0)
 
+#The following will be used to clean the dates for them to take up less space
+size  = len(x)
+dataClean = []
 
-#!/usr/bin/env python
-import numpy
-import matplotlib
-matplotlib.use('Agg')
-import matplotlib.pyplot as plt
+for i in range(size):
+    dataClean.append(x[i][5:16])
 
-datatype=[('index',numpy.float32), ('floati',numpy.float32), 
-        ('floatq',numpy.float32)]
-filename='bigdata.bin'
+print(dataClean)
 
-def main():
-    data = numpy.memmap(filename, datatype, 'r') 
-    plt.plot(data['floati'],data['floatq'],'r,')
-    plt.grid(True)
-    plt.title("Signal-Diagram")
-    plt.xlabel("Sample")
-    plt.ylabel("In-Phase")
-    plt.savefig('foo2.png')
+cleanGraphDataClean = []
+cleanGraphY = []
 
-if __name__ == "__main__":
-    main()  
+for i in range(size):
+    if(i%8==0):
+        cleanGraphDataClean.append(dataClean[i])
+        cleanGraphY.append(y[i])
+
+#plt.plot(dataClean, y, color = 'b')
+plt.plot(cleanGraphDataClean, cleanGraphY, color = 'b')
+plt.xlabel('Time', fontsize = 10)
+plt.ylabel('Temperature', fontsize = 10)
+plt.title('Temperature over Time IDF environment', fontsize = 20)
+plt.show()
