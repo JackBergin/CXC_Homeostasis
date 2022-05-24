@@ -13,14 +13,14 @@ humid2 = []
 
 
 # Converts values from the csv into lists for graphing
-with open('IDFENV.csv','r') as csvfile:
+with open('Thermometer 2_export_202205240900.csv','r') as csvfile:
     plots = csv.reader(csvfile, delimiter = ',')
     for row in plots:
         time.append(row[0])
         temp.append(row[1])
         humid.append(row[2])
 
-with open('XRENV.csv','r') as csvfile:
+with open('Thermometer 1_export_202205240900.csv','r') as csvfile:
     plots = csv.reader(csvfile, delimiter = ',')
     for row in plots:
         time2.append(row[0])
@@ -55,7 +55,7 @@ for i in range(size):
 
 xAxisTics2 = []
 for k in range(size2):
-    if(k%2048==0):
+    if(k%1024==0):
         xAxisTics2.append(dateClean2[k])
 
 # Casts temperature to float values from string
