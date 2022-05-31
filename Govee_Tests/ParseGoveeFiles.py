@@ -13,14 +13,14 @@ humid2 = []
 
 
 # Converts values from the csv into lists for graphing
-with open('Thermometer 2_export_202205240900.csv','r') as csvfile:
+with open('Thermometer 2_export_202205311243.csv','r') as csvfile:
     plots = csv.reader(csvfile, delimiter = ',')
     for row in plots:
         time.append(row[0])
         temp.append(row[1])
         humid.append(row[2])
 
-with open('Thermometer 1_export_202205240900.csv','r') as csvfile:
+with open('Thermometer 1_export_202205311243.csv','r') as csvfile:
     plots = csv.reader(csvfile, delimiter = ',')
     for row in plots:
         time2.append(row[0])
@@ -49,14 +49,20 @@ for i in range(size2):
 
 # Creates a limited x axis range for tic marks
 xAxisTics = []
-for i in range(size):
-    if(i%2048==0):
-        xAxisTics.append(dateClean[i])
+xAxisTics.append(dateClean[size-1])
+xAxisTics.append(dateClean[0])
+xAxisTics.append(dateClean[round(size/2)])
+xAxisTics.append(dateClean[round(size/4)])
+xAxisTics.append(dateClean[round(size*3/4)])
+
 
 xAxisTics2 = []
-for k in range(size2):
-    if(k%1024==0):
-        xAxisTics2.append(dateClean2[k])
+xAxisTics2.append(dateClean2[size2-1])
+xAxisTics2.append(dateClean2[0])
+xAxisTics2.append(dateClean2[round(size2/2)])
+xAxisTics2.append(dateClean2[round(size2/4)])
+xAxisTics2.append(dateClean2[round(size2*3/4)])
+
 
 # Casts temperature to float values from string
 tempToFloat = []  
@@ -81,7 +87,7 @@ fontAxis = {'family': 'serif',
 fontTitle = {'family': 'serif',
         'color':  'darkgreen',
         'weight': 'normal',
-        'size': 14,
+        'size': 12,
        }
 
 
@@ -92,7 +98,7 @@ plt.subplots_adjust(left=0.1,
                     right=0.9, 
                     top=0.9, 
                     wspace=0.4, 
-                    hspace=0.8)
+                    hspace=0.9)
 
 ax1.plot(dateClean,tempToFloat, color = '#7C7978')
 ax1.set_xlabel('Date and Time', fontdict = fontAxis)
