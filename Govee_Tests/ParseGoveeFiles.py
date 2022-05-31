@@ -90,7 +90,43 @@ fontTitle = {'family': 'serif',
         'size': 12,
        }
 
+plt.figure(1)
+plt.plot(dateClean,tempToFloat, color = '#7C7978')
+plt.xlabel('Date and Time', fontdict = fontAxis)
+plt.ylabel('Temperature (\N{DEGREE SIGN}F)', fontdict = fontAxis)
+plt.xticks(xAxisTics)
+plt.title('Temperature over Time\n (IDF environment)', fontdict = fontTitle, pad = 10)
+plt.grid(True)
+plt.show()
 
+plt.figure(2)
+plt.plot(dateClean, humidToFloat, color = '#7C7978')
+plt.xlabel('Date and Time', fontdict = fontAxis)
+plt.ylabel('Relative Humidity (%)', fontdict = fontAxis)
+plt.xticks(xAxisTics)
+plt.title('Relative Humidity over Time\n (IDF environment)', fontdict = fontTitle, pad = 10)
+plt.grid(True)
+plt.show()
+
+plt.figure(3)
+plt.plot(dateClean2,tempToFloat2, color = '#7C7978')
+plt.xlabel('Date and Time', fontdict = fontAxis)
+plt.ylabel('Temperature (\N{DEGREE SIGN}F)', fontdict = fontAxis)
+plt.xticks(xAxisTics2)
+plt.title('Temperature over Time\n (XR environment)', fontdict = fontTitle, pad = 10)
+plt.grid(True)
+plt.show()
+
+plt.figure(4)
+plt.plot(dateClean2, humidToFloat2, color = '#7C7978')
+plt.xlabel('Date and Time', fontdict = fontAxis)
+plt.ylabel('Relative Humidity (%)', fontdict = fontAxis)
+plt.xticks(xAxisTics2)
+plt.title('Relative Humidity over Time\n (XR environment)', fontdict = fontTitle, pad = 10)
+plt.grid(True)
+plt.show()
+
+'''
 fig, (ax1, ax2, ax3, ax4) = plt.subplots(4, figsize=(10,10))
 
 plt.subplots_adjust(left=0.1,
@@ -130,3 +166,4 @@ ax4.grid(True)
 
 
 plt.show()
+'''
